@@ -1,4 +1,4 @@
-My Dotfiles as of April 2, 2020 (4/2/2020)
+My Dotfiles as of April 10, 2020 (4/10/2020)
 
 Configs included:
   i3
