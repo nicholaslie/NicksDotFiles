@@ -173,11 +173,18 @@ bindsym $mod+r mode "resize"
 ################# Appearance ###################################################################
 ################################################################################################
 
-#window colors
+# window colors
+# 	Solarized Dark Scheme
+# Base 02
+set $border "#002b36ee"
+#Base 01
+set $indicator "586e75ee"
+
+
 # class                 border    backgr.   text      indicator   child_border
-client.focused          #072642   #285577   #5294e2   #7c818c     #7c818c
-client.focused_inactive #33333300 #5f676a00 #ffffff00 #484e5000   #212530ee
-client.unfocused        #002b36   #222222   #88888800 #002b36     #212530ee
+client.focused          $border   $border   $border   $indicator  $indicator
+client.focused_inactive #33333300 #5f676a00 #ffffff00 $border     $border
+client.unfocused        #002b36   #222222   #88888800 $border     $border
 client.urgent           #2f343a   #900000   #ffffff   #900000     #900000
 client.placeholder      #00000000 #0c0c0c00 #ffffff00 #00000000   #0c0c0c00
 client.background       #ffffff00
@@ -185,10 +192,10 @@ client.background       #ffffff00
 # i3 gaps settings
 
 for_window [class="^.*"] border pixel 2
-gaps inner 20
-gaps outer 20
+gaps inner 12
+gaps outer 12
 #gaps bottom 40
-#smart_gaps on
+smart_gaps on
 smart_borders on
 
 
