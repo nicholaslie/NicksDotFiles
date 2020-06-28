@@ -25,7 +25,7 @@
 [colors]
 ;Solarized Dark Base 02
 background = #ee002b36
-Solarized Base 01
+;Solarized Base 01
 background-alt = #ee586e71
 
 foreground = #dfdfdf
@@ -42,9 +42,8 @@ alert = #b58900
 
 [bar/mybar]
 width = 100%
-height = 25
+height = 20
 radius = 0.0
-;bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -61,8 +60,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=11;1
-font-1 = unifont:fontformat=truetype:size=10:antialias=false;1
+font-0 = fixed:pixelsize=11;2
+font-1 = unifont:fontformat=truetype:size=10:antialias=false;2
 font-2 = siji:pixelsize=10;1
 font-3 = FontAwesome:style=Solid:pixelsize=12:antialias=true;3
 
@@ -84,7 +83,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =  %free% / %total%
+label-mounted =  %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 label-mounted-underline = ${colors.primary}
@@ -95,37 +94,40 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+enable-click = false
+enable-scroll = false
 
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %index% %icon%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %index% %icon%
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %index% %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %index% %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
+; i3 Workspace Labels
+;ws-icon-0 = 1;URxvt
+;ws-icon-1 = 2;Firefox
+;ws-icon-2 = 3;Music
 
+;ws-icon-default = 
 
 [module/mpd]
 type = internal/mpd
@@ -218,7 +220,7 @@ interval = 5
 
 date = %a %b %d %Y
 
-time = %I:%M %p
+time = %H:%M %p
 
 format-prefix = 
 format-prefix-foreground = #839496
