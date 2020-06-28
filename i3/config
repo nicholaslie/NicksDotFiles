@@ -38,6 +38,11 @@ exec --no-startup-id nitrogen --restore
 # transparency Picom
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
+# URxvt daemon
+exec --no-startup-id urxvtd -q &
+
+# clipmenu daemon
+exec --no-startup-id clipmenud
 
 #######################################################################################
 ################### Key Bindings ######################################################
@@ -67,8 +72,14 @@ bindsym $mod+Shift+q kill
 # start rofi
 bindsym $mod+d exec rofi -show run
 
+# start clipmenu rofi
+bindsym $mod+Insert exec CM_LAUNCHER=rofi clipmenu
+
 # open firefox
 bindsym $mod+i exec firefox
+
+# Tor Browser
+bindsym $mod+shift+i exec torbrowser-launcher
 
 # change focus
 bindsym $mod+h focus left
@@ -92,9 +103,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# indsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+shift+space floating toggle
@@ -103,10 +114,14 @@ bindsym $mod+shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
+
+
+######################################################################################
+############### Workspaces ###########################################################
+######################################################################################
 
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -142,6 +157,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# Workspace Assignments
+
+######################################################################################
+############### Resize and Restart ###################################################
+######################################################################################
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -149,12 +170,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+        # These bindings trigger as soon as you enter the resize mode
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -182,7 +199,7 @@ set $indicator "586e75ee"
 
 
 # class                 border    backgr.   text      indicator   child_border
-client.focused          $border   $border   $border   $indicator  $indicator
+client.focused          $border   $border   $indicator   $indicator  $indicator
 client.focused_inactive #33333300 #5f676a00 #ffffff00 $border     $border
 client.unfocused        #002b36   #222222   #88888800 $border     $border
 client.urgent           #2f343a   #900000   #ffffff   #900000     #900000
@@ -193,8 +210,7 @@ client.background       #ffffff00
 
 for_window [class="^.*"] border pixel 2
 gaps inner 12
-gaps outer 12
-#gaps bottom 40
+gaps outer 6 
 smart_gaps on
 smart_borders on
 
@@ -203,12 +219,10 @@ smart_borders on
 ################### Specific Window Settings ##########################################
 #######################################################################################
 
-for_window [window_role="pop-up"]                       floating enable
-for_window [window_role="bubble"]                       floating enable
-for_window [window_role="task_dialog"]                  floating enable
-for_window [window_role="Preferences"]                  floating enable
-for_window [window_type="dialog"]                       floating enable
-for_window [window_type="menu"]                         floating enable
+for_window [class="Tor Browser"]				floating enable
 
 
+
+
+ 
 ############### END ###########################################################################
